@@ -1,7 +1,12 @@
-import city from './city'
+
+const city = require('./city')
+const total = require('./total')
+const goods = require("./goods")
 
 
 
 module.exports = {
-  city:city
+  city:city,
+  total:total,
+  goods:goods
 }

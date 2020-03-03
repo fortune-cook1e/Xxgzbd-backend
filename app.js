@@ -1,8 +1,10 @@
 const express =  require('express')
 const app = express()
+const bodyParser = require('body-parser')
 const routes = require('./routes')
 
-// 允许跨域
+
+// CORS 跨域
 app.all('*',function(req,res,next) {
   res.header('Access-Control-Allow-Origin','*')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
@@ -14,13 +16,23 @@ app.all('*',function(req,res,next) {
   }
 })
 
+// 解析post请求
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended:false
+}))
 
 // 处理异常
 app.use((err,req,res,next) => {
   next(err)
 })
 
+
 app.use('/city',routes.city)
+app.use('/city',routes.total)
+app.use('/goods',routes.goods)
+
+
 
 
 app.listen(3000,() => {
