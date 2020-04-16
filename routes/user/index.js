@@ -34,6 +34,7 @@ router.post('/register',async (req,res,next) => {
       )
     }
   } catch(e) {
+    console.log(e);
     res.json(
       Object.assign(
         {},
@@ -50,7 +51,6 @@ router.post('/register',async (req,res,next) => {
 router.post('/login',async (req,res,next) => {
   try {
     const { username,password } = req.body
-    console.log(username,password);
     const findSql = 'SELECT * FROM city_user WHERE username = ? and password = ?'
     const [rows, fields] = await db.execute(findSql,[username,password])
     if (rows.length > 0) {
@@ -76,6 +76,7 @@ router.post('/login',async (req,res,next) => {
       )
     }
   } catch(e) {
+    console.log(e);
     res.json(
       Object.assign(
         {},

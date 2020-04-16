@@ -47,28 +47,13 @@ app.use((err,req,res,next) => {
       {
         code:401,
         status:0,
-        msg:'无效token'
+        msg:'token已失效'
       }
     )
   }
   next(err)
 })
 
-// app.use(function (req, res, next) {
-//   // 我这里知识把登陆和注册请求去掉了，其他的多有请求都需要进行token校验 
-//   if (req.url != '/user/login' && req.url != '/user/register') {
-//       let token = req.headers.token;
-//       let result = verifyToken(token);
-//       // 如果考验通过就next，否则就返回登陆信息不正确
-//       if (result == 'err') {
-//           console.log(result);
-//           res.send({status: 403, msg: '登录已过期,请重新登录'});
-//       } else {
-//           next();
-//       }
-//   } else {
-//       next();
-//   }
 
 app.use('/city',routes.city)
 app.use('/city',routes.total)
